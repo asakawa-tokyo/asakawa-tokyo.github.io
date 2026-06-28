@@ -38,8 +38,6 @@
 - 50文字以内を目安にする
 - 詳細は本文に書く（タイトルに詰め込まない）
 
----
-
 ## PR の命名規則
 
 [Conventional Commits](https://www.conventionalcommits.org/ja/) 形式を採用します。
@@ -50,8 +48,15 @@
 <type>(<scope>): <summary>
 ```
 
+破壊的変更（Breaking Change）を含む場合は `!` を付けます。
+
+```
+<type>(<scope>)!: <summary>
+```
+
 - `scope` は省略可能。影響範囲が明確なときのみ記載する
 - `summary` は英語・日本語どちらでも可（チーム内で統一すること）
+- 破壊的変更とは、既存の API・インターフェース・動作との後方互換性が失われる変更のこと
 
 ### Type 一覧
 
@@ -76,6 +81,21 @@ refactor(db): N+1クエリを解消
 test(user): ユーザー削除のエッジケースを追加
 chore(deps): lodash を 4.17.21 に更新
 ```
+
+破壊的変更の例：
+
+```
+feat(api)!: レスポンスのフィールド名をスネークケースに変更
+refactor(auth)!: JWTからセッション認証に移行
+```
+
+> 破壊的変更の PR は、本文の `BREAKING CHANGE:` セクションに影響範囲と移行方法を記載してください。
+>
+> ```
+> BREAKING CHANGE: /users エンドポイントのレスポンスが変更されました。
+> `userName` → `user_name`、`createdAt` → `created_at` に変更してください。
+> ```
+
 
 ## Issue と PR の紐付け
 
