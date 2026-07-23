@@ -2,5 +2,9 @@
   "root": "./",
   "title": "ASAKAWA Docs",
   "author": "ASAKAWA Yuka",
-  "language": "ja"
+  "language": "ja",
+  "structure": {
+    "readme": "README.md"
+  },
+  "output": "docs"
 }
